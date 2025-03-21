@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://bw4m2xrorv8l6"]
+
+[ext_resource type="Script" path="res://space.gd" id="1_315wp"]
+[ext_resource type="Texture2D" uid="uid://b0s3fc7sjnlof" path="res://solar_system/space_background.png" id="1_lncub"]
+[ext_resource type="PackedScene" uid="uid://g7dky1e5135i" path="res://new ship/new_ship.tscn" id="2_fknog"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://joystick/virtual_joystick.tscn" id="5_efyx3"]
+[ext_resource type="PackedScene" uid="uid://i0j8sg187hpx" path="res://new gui/paused/pause.tscn" id="7_8me3g"]
+[ext_resource type="PackedScene" uid="uid://boi3ne8duveko" path="res://asterods/spawner.tscn" id="7_gv83e"]
+[ext_resource type="Script" path="res://shipcamera.gd" id="7_u2dtk"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_2317i"]
+panorama = ExtResource("1_lncub")
+
+[sub_resource type="Sky" id="Sky_x5ej6"]
+sky_material = SubResource("PanoramaSkyMaterial_2317i")
+
+[sub_resource type="Environment" id="Environment_jcg5q"]
+background_mode = 2
+sky = SubResource("Sky_x5ej6")
+
+[node name="game_manager" type="Node3D"]
+process_mode = 1
+transform = Transform3D(0.768181, 0, 0, 0, 1.89425, 0, 0, 0, 1.39976, 0, 0, 0)
+script = ExtResource("1_315wp")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jcg5q")
+
+[node name="ship" parent="." instance=ExtResource("2_fknog")]
+transform = Transform3D(1.22688, 0, 0, 0, 1.12222, 0, 0, 0, 1, 0, 0, 0)
+floor_stop_on_slope = false
+floor_block_on_wall = false
+
+[node name="gui" type="CanvasLayer" parent="."]
+
+[node name="pause" parent="gui" instance=ExtResource("7_8me3g")]
+visible = false
+
+[node name="Virtual Joystickleft" parent="gui" instance=ExtResource("5_efyx3")]
+offset_left = 53.0
+offset_top = -281.0
+offset_right = 276.0
+offset_bottom = 19.0
+action_left = "roll_left"
+action_right = "roll_right"
+action_up = "throttle_up"
+action_down = "throttle_down"
+
+[node name="Virtual Joystickright" parent="gui" instance=ExtResource("5_efyx3")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -277.0
+offset_top = -274.0
+offset_right = 23.0
+offset_bottom = 26.0
+grow_horizontal = 0
+action_left = "yaw_left"
+action_right = "yaw_right"
+action_up = "pitch_up"
+action_down = "pitch_down"
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1.29962, 0.073734, 0.0129867, 0.0302255, 0.508054, 0.140213, 0.00388852, 0.18984, -0.688712, 2.08479, 3.14102, -6.2227)
+far = 800.0
+script = ExtResource("7_u2dtk")
+
+[node name="spawner" parent="." instance=ExtResource("7_gv83e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 810.046)
+
+[node name="spawner2" parent="." instance=ExtResource("7_gv83e")]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, 219.612, 0, 291.371)
+
+[node name="spawner3" parent="." instance=ExtResource("7_gv83e")]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 0, 0, 0, 1, -138.486, 0, 1000)

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfq6rbw3sm76k"]
+
+[ext_resource type="Script" path="res://new gui/mainMenu.gd" id="1_xovk4"]
+[ext_resource type="PackedScene" uid="uid://bq3i3dbhuh04r" path="res://new gui/main_menu/main_menu.tscn" id="2_57rkl"]
+
+[node name="mainMenu" type="Node"]
+script = ExtResource("1_xovk4")
+
+[node name="main_menu" parent="." instance=ExtResource("2_57rkl")]
+
+[connection signal="quit_requested" from="main_menu" to="." method="_on_main_menu_quit_requested"]
+[connection signal="start_requested" from="main_menu" to="." method="_on_main_menu_start_requested"]
+[connection signal="start_requested" from="main_menu" to="main_menu" method="_on_start_requested"]

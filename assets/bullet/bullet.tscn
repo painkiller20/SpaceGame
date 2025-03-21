@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://hv1o3rjqoidr"]
+
+[ext_resource type="Script" path="res://assets/bullet/bullet.gd" id="1_f32ph"]
+[ext_resource type="PackedScene" uid="uid://dmv3p7ephiv26" path="res://assets/Pickup_Bullets.gltf" id="2_7oncd"]
+[ext_resource type="AudioStream" uid="uid://dhlhu7hnnc16x" path="res://sounds/explosion.wav" id="3_1lrxc"]
+[ext_resource type="AudioStream" uid="uid://7ooum2todmjf" path="res://sounds/laser.wav" id="4_2yktn"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sxrgv"]
+size = Vector3(0.789997, 0.732418, 0.680048)
+
+[node name="bullet" type="CharacterBody3D"]
+transform = Transform3D(0.344262, 0, 0, 0, 1.62314, 0, 0, 0, 1.31129, 0, 0.382036, 0)
+script = ExtResource("1_f32ph")
+
+[node name="Pickup_Bullets" parent="." instance=ExtResource("2_7oncd")]
+transform = Transform3D(2.79075, 0, 0, 0, -6.86283e-08, -1.42578, 0, 1.57003, -6.23228e-08, 0.211815, 0.518353, 0.208492)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.999418, 0, 0, 0, 0.999418, 0, 0, 0, 0.999418, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(4.4134, 0, 0, 0, 0.843306, 4.5617e-09, 0, 0, 2.13796, 0.213783, 0.532814, 0.27874)
+shape = SubResource("BoxShape3D_sxrgv")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(2.90476, 0, 0, 0, 0.616093, -1.86265e-09, 0, 1.86265e-09, 0.76261, -0.150641, 0.472182, 0.25207)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[node name="EnemyExplode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1lrxc")
+volume_db = -11.07
+autoplay = true
+
+[node name="BulletSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(2.90476, 0, 0, 0, 0.616091, 3.72529e-09, 0, 3.72529e-09, 0.762609, 0.423437, 0.466419, 0.199209)
+stream = ExtResource("4_2yktn")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

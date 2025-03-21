@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://i0j8sg187hpx"]
+
+[ext_resource type="Texture2D" uid="uid://clabo3d3moq4r" path="res://new gui/1. Free Hologram Interface Wenrexa/Card X1/Card X2.png" id="1_5poqk"]
+[ext_resource type="Script" path="res://new gui/paused/pause.gd" id="1_8s7c2"]
+[ext_resource type="Theme" uid="uid://cof3pstv3xn6q" path="res://new gui/default.tres" id="2_yn365"]
+
+[node name="pause" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8s7c2")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CardX2" type="Sprite2D" parent="Panel"]
+position = Vector2(579, 321)
+scale = Vector2(3.18687, 0.748524)
+texture = ExtResource("1_5poqk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 80
+text = "----PAUSED----"
+horizontal_alignment = 1
+
+[node name="resume" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_yn365")
+theme_override_font_sizes/font_size = 72
+text = "Resume"
+
+[node name="settings2" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_yn365")
+theme_override_font_sizes/font_size = 72
+text = "Settings
+"
+
+[node name="quit" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_yn365")
+theme_override_font_sizes/font_size = 72
+text = "Quit"

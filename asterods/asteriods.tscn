@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn66j7bgqjsbq"]
+
+[ext_resource type="PackedScene" uid="uid://b4eu27gkvwjy8" path="res://assets/Rock_Large_2.gltf" id="1_lcc11"]
+[ext_resource type="Script" path="res://asteriods.gd" id="1_qn0dq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qqvr8"]
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(26.8019, 0, 0, 0, 25.4216, 0, 0, 0, 27.7678, 0, 0, 0)
+script = ExtResource("1_qn0dq")
+
+[node name="Rock_Large_1" parent="." instance=ExtResource("1_lcc11")]
+transform = Transform3D(1.17459, 0, 0, 0, -0.026957, 1.24978, 0, -0.798314, -0.042202, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(13.974, 0, 0, 0, 11.8957, 0, 0, 0, 11.8017, -0.00370407, -0.0777285, -0.780956)
+shape = SubResource("SphereShape3D_qqvr8")

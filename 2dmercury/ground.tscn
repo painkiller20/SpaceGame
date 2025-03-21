@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://utoav5c8cjmt"]
+
+[ext_resource type="Texture2D" uid="uid://bqx6fy17p2fq8" path="res://Assets 1024 Cave/Cave - Platforms.png" id="1_ws7u4"]
+[ext_resource type="PackedScene" uid="uid://h7oofmh8ju7s" path="res://2dmercury/wall2d.tscn" id="2_yqfq2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3s32"]
+size = Vector2(10321, 569)
+
+[node name="ground" type="Node2D"]
+
+[node name="Platform" type="StaticBody2D" parent="."]
+
+[node name="wall2d" parent="." instance=ExtResource("2_yqfq2")]
+position = Vector2(216, -42)
+rotation = 1.5708
+scale = Vector2(0.4, 0.4)
+
+[node name="wall2d2" parent="." instance=ExtResource("2_yqfq2")]
+position = Vector2(411, -96)
+scale = Vector2(0.3, 0.3)
+
+[node name="wall2d3" parent="." instance=ExtResource("2_yqfq2")]
+position = Vector2(643, -150)
+scale = Vector2(0.3, 0.3)
+
+[node name="wall2d4" parent="." instance=ExtResource("2_yqfq2")]
+position = Vector2(865, -115)
+rotation = 1.5708
+scale = Vector2(0.7, 0.7)
+
+[node name="wall2d5" parent="." instance=ExtResource("2_yqfq2")]
+position = Vector2(898, -244)
+scale = Vector2(0.4, 0.4)
+
+[node name="wall2d6" parent="." instance=ExtResource("2_yqfq2")]
+position = Vector2(1172, -156)
+scale = Vector2(0.4, 0.4)
+
+[node name="wall2d7" parent="." instance=ExtResource("2_yqfq2")]
+position = Vector2(1464, -254)
+scale = Vector2(0.4, 0.4)
+
+[node name="wall2d8" parent="." instance=ExtResource("2_yqfq2")]
+position = Vector2(1636, -151)
+rotation = 1.5708
+
+[node name="wall2d9" parent="." instance=ExtResource("2_yqfq2")]
+position = Vector2(2056, -63)
+
+[node name="wall2d10" parent="." instance=ExtResource("2_yqfq2")]
+position = Vector2(2613, -234)
+
+[node name="wall2d11" parent="." instance=ExtResource("2_yqfq2")]
+position = Vector2(948, -157)
+scale = Vector2(0.4, 0.4)
+
+[node name="Ground" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+position = Vector2(2033, 277.5)
+scale = Vector2(27.392, 10.8269)
+texture = ExtResource("1_ws7u4")
+region_enabled = true
+region_rect = Rect2(629.055, 797.364, 352.218, 52.7273)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(2040, 280.5)
+shape = SubResource("RectangleShape2D_m3s32")

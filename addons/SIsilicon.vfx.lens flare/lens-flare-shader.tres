@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cde0cnoulc8tu"]
+
+[ext_resource type="Shader" path="res://addons/SIsilicon.vfx.lens flare/lens_flare.gdshader" id="1_pocal"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_pocal")

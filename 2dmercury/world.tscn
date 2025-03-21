@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://d28q4ocpvlpt5"]
+
+[ext_resource type="Texture2D" uid="uid://b0s3fc7sjnlof" path="res://solar_system/space_background.png" id="1_k8fjf"]
+[ext_resource type="PackedScene" uid="uid://cfkw56km0rb7s" path="res://2dmercury/player.tscn" id="2_3h67b"]
+[ext_resource type="PackedScene" uid="uid://utoav5c8cjmt" path="res://2dmercury/ground.tscn" id="4_j2fmv"]
+[ext_resource type="PackedScene" uid="uid://j48cqv0f07ll" path="res://2dmercury/enemy.tscn" id="7_ylpii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ix5s0"]
+size = Vector2(67, 694)
+
+[node name="world" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(1100, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(176, 320)
+scale = Vector2(2.14444, 1.97657)
+texture = ExtResource("1_k8fjf")
+region_enabled = true
+region_rect = Rect2(40, 240, 540, 330)
+
+[node name="enemy" parent="." instance=ExtResource("7_ylpii")]
+position = Vector2(881, 556)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 650)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -330)
+shape = SubResource("RectangleShape2D_ix5s0")
+
+[node name="ground" parent="." instance=ExtResource("4_j2fmv")]
+position = Vector2(-26, 604)
+
+[node name="player" parent="." instance=ExtResource("2_3h67b")]
+position = Vector2(99, 556)

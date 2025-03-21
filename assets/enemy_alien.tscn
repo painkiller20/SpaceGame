@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://qgtmewwlmkvy"]
+
+[ext_resource type="Script" path="res://assets/enemy_alien.gd" id="1_mdgtj"]
+[ext_resource type="PackedScene" uid="uid://c12urvdrlgc7a" path="res://assets/Enemy_Flying.gltf" id="1_wb6p8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4qlg3"]
+size = Vector3(1.38362, 3.84445, 1.3233)
+
+[node name="enemy" type="CharacterBody3D" groups=["Enemies"]]
+transform = Transform3D(-95.3848, 0, -3.13819, 0, 69.7743, 0, 4.28636, 0, -69.8341, 0, 0, 0)
+script = ExtResource("1_mdgtj")
+
+[node name="Enemy_Flying" parent="." instance=ExtResource("1_wb6p8")]
+transform = Transform3D(-0.999698, 0.0150497, 0, -0.0244485, -0.61009, 0.0927529, 0.00227748, 0.0568326, 0.995689, 0.911685, 3.08059, 1.20647)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-0.999699, 0.0150497, 1.5272e-09, -0.0245484, -0.612583, -0.0220243, -0.000540792, -0.013495, 0.99976, 0.960828, 1.57153, 1.29088)
+shape = SubResource("BoxShape3D_4qlg3")

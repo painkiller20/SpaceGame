@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://g7dky1e5135i"]
+
+[ext_resource type="PackedScene" uid="uid://dtda8aty0x5qc" path="res://new ship/Challenger.gltf" id="1_s66bw"]
+[ext_resource type="Script" path="res://new_ship.gd" id="1_ykeif"]
+[ext_resource type="Script" path="res://new ship/visualroot.gd" id="2_iilai"]
+[ext_resource type="Script" path="res://camerahints.gd" id="3_xd1st"]
+[ext_resource type="PackedScene" path="res://ship/jet_vfx.tscn" id="4_pvde6"]
+[ext_resource type="Script" path="res://new ship/Challenger.gd" id="5_g1idd"]
+[ext_resource type="Script" path="res://new ship/controller.gd" id="6_wq0py"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ro1b3"]
+
+[sub_resource type="Skin" id="Skin_g4n2c"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v1msf"]
+radius = 1.10947
+height = 7.83171
+
+[node name="ship" type="CharacterBody3D"]
+transform = Transform3D(1.22688, 0, 0, 0, 1.12222, 0, 0, 0, 1, 0, -0.0601149, 0)
+script = ExtResource("1_ykeif")
+
+[node name="visual" type="Node" parent="."]
+
+[node name="visualroot" type="Node3D" parent="visual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.937435, -3.08645, -5.87711)
+script = ExtResource("2_iilai")
+
+[node name="camerahints" type="Node" parent="visual/visualroot"]
+script = ExtResource("3_xd1st")
+
+[node name="Challenger" parent="visual/visualroot" instance=ExtResource("1_s66bw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.235641, 4.53324, 4.86457)
+script = ExtResource("5_g1idd")
+
+[node name="ship" type="MeshInstance3D" parent="visual/visualroot/Challenger"]
+transform = Transform3D(792.479, 0, 0, 0, 256.473, 0, 0, 0, 1335.36, 0.0995817, -0.14463, 1.46041)
+mesh = SubResource("ArrayMesh_ro1b3")
+skin = SubResource("Skin_g4n2c")
+
+[node name="reactors" type="MeshInstance3D" parent="visual/visualroot/Challenger"]
+transform = Transform3D(439.755, 0, 0, 0, 102.655, 0, 0, 0, 96.0554, 0.00399065, 0.240237, -2.1847)
+mesh = SubResource("ArrayMesh_ro1b3")
+skin = SubResource("Skin_g4n2c")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="visual/visualroot/Challenger"]
+transform = Transform3D(1.684, 0, 0, 0, 0.114, 0, 0, 0, 1, 3.57186, -0.0197695, -1.74729)
+shape = SubResource("CapsuleShape3D_v1msf")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="visual/visualroot/Challenger"]
+transform = Transform3D(1.29431, 0, 0, 0, 0.0884869, 0, 0, 0, 0.548361, -3.59837, -0.0435874, -1.89529)
+shape = SubResource("CapsuleShape3D_v1msf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="visual/visualroot/Challenger"]
+transform = Transform3D(1.87587, 0, 0, 0, 0.34489, 0, 0, 0, 4.94724, -0.184425, 0.385916, 1.9075)
+shape = SubResource("CapsuleShape3D_v1msf")
+
+[node name="JetVFXrightmain" parent="visual/visualroot/Challenger" instance=ExtResource("4_pvde6")]
+transform = Transform3D(0.473803, 0, 0, 0, 0.47578, 0, 0, 0, 0.990318, 1.17012, 0.14465, -2.45781)
+
+[node name="JetVFXleftmain" parent="visual/visualroot/Challenger" instance=ExtResource("4_pvde6")]
+transform = Transform3D(0.413, 0, 0, 0, 0.414, 0, 0, 0, 0.99, -1.20048, 0.19101, -2.37624)
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="visual/visualroot/Challenger"]
+transform = Transform3D(0.999898, 0.0139797, 0.00285731, 0.00177143, 0.0770803, -0.997023, -0.0141584, 0.996927, 0.0770477, -0.482387, -4.73347, 0.134114)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="visual/visualroot/Challenger"]
+transform = Transform3D(0.999898, 0.0139797, 0.00285731, -0.00344069, 0.0418857, 0.999116, 0.0138477, -0.999025, 0.0419295, -0.280811, 7.35617, -2.62921)
+
+[node name="bullet" type="Node3D" parent="visual/visualroot/Challenger"]
+transform = Transform3D(1, 0, 0, 0, 0.424, 0, 0, 0, 1, -1.88695, 0, 2.04808)
+
+[node name="bullet2" type="Node3D" parent="visual/visualroot/Challenger"]
+transform = Transform3D(1, 0, 0, 0, 1.1019, 0, 0, 0, 1, 1.69896, -0.119644, 1.90722)
+
+[node name="controller" type="Node" parent="."]
+script = ExtResource("6_wq0py")

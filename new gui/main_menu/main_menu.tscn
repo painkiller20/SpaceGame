@@ -1,0 +1,153 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq3i3dbhuh04r"]
+
+[ext_resource type="Script" path="res://new gui/main_menu/main_menu.gd" id="1_75w5s"]
+[ext_resource type="Texture2D" uid="uid://c2ypypp13k0uu" path="res://new gui/main_menu/moon-gc3ec85a41_1280.jpg" id="1_p5kvk"]
+[ext_resource type="FontFile" path="res://gui/fonts/hack_regular_16_dynamic_font.tres" id="2_tjdoq"]
+[ext_resource type="Theme" uid="uid://cof3pstv3xn6q" path="res://new gui/default.tres" id="3_pinlu"]
+[ext_resource type="AudioStream" uid="uid://djcuau6xqmhqf" path="res://sounds/dig_01.wav" id="5_ucmi2"]
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_75w5s")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = -2.0
+offset_right = -1.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_p5kvk")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 6.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="TextureRect/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="TextureRect/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect"]
+layout_mode = 1
+offset_right = 346.0
+offset_bottom = 645.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/HBoxContainer"]
+show_behind_parent = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TextureRect/HBoxContainer"]
+show_behind_parent = true
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.718
+anchor_top = 0.348
+anchor_right = 0.718
+anchor_bottom = 0.543
+offset_left = -238.7
+offset_top = 21.496
+offset_right = 132.3
+offset_bottom = 21.496
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.839216, 0.666667, 0.164706, 1)
+theme_override_font_sizes/font_size = 51
+text = "Space Oddesey
+"
+horizontal_alignment = 1
+
+[node name="Start" type="Button" parent="TextureRect"]
+layout_mode = 1
+offset_left = 65.0
+offset_top = 43.0
+offset_right = 322.0
+offset_bottom = 169.0
+theme = ExtResource("3_pinlu")
+theme_override_colors/font_color = Color(0.917647, 0.945098, 0.164706, 1)
+theme_override_fonts/font = ExtResource("2_tjdoq")
+theme_override_font_sizes/font_size = 31
+text = "Start"
+icon_alignment = 2
+
+[node name="Settings2" type="Button" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 68.0
+offset_top = -55.0
+offset_right = 317.0
+offset_bottom = 82.0
+grow_vertical = 2
+theme = ExtResource("3_pinlu")
+theme_override_colors/font_color = Color(0.917647, 0.945098, 0.164706, 1)
+theme_override_fonts/font = ExtResource("2_tjdoq")
+theme_override_font_sizes/font_size = 38
+text = "Settings
+"
+
+[node name="Quit" type="Button" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 78.0
+offset_top = -143.0
+offset_right = 318.0
+offset_bottom = -33.0
+grow_vertical = 0
+theme = ExtResource("3_pinlu")
+theme_override_colors/font_color = Color(0.917647, 0.945098, 0.164706, 1)
+theme_override_fonts/font = ExtResource("2_tjdoq")
+theme_override_font_sizes/font_size = 31
+text = "Quit"
+
+[node name="gamesound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ucmi2")
+volume_db = 4.0
+bus = &"SFX"
+
+[connection signal="pressed" from="TextureRect/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="TextureRect/Settings2" to="." method="_on_settings_2_pressed"]
+[connection signal="pressed" from="TextureRect/Settings2" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="TextureRect/Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://cx7qq8uiva4pi"]
+
+[ext_resource type="Script" path="res://2dmercury/bullet.gd" id="1_oqu3o"]
+[ext_resource type="Texture2D" uid="uid://bbkwmtcbf4w5n" path="res://assets/bullet.png" id="2_f2sj5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2g21n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f2sj5")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4f2d7"]
+size = Vector2(20, 6)
+
+[node name="bullet" type="CharacterBody2D"]
+script = ExtResource("1_oqu3o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(1, 0.545455)
+sprite_frames = SubResource("SpriteFrames_2g21n")
+animation = &"shoot"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_4f2d7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, 2)
+scale = Vector2(0.4, 0.3)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

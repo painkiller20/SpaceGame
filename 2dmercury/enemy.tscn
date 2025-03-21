@@ -1,0 +1,100 @@
+[gd_scene load_steps=13 format=3 uid="uid://j48cqv0f07ll"]
+
+[ext_resource type="Texture2D" uid="uid://bxc3q2od35gkb" path="res://assets/Skull/Idle 1 (52x54).png" id="1_2mfs4"]
+[ext_resource type="Script" path="res://2dmercury/enemy2d.gd" id="1_5jmnx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3iae"]
+atlas = ExtResource("1_2mfs4")
+region = Rect2(0, 0, 52, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3eejk"]
+atlas = ExtResource("1_2mfs4")
+region = Rect2(52, 0, 52, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flw6a"]
+atlas = ExtResource("1_2mfs4")
+region = Rect2(104, 0, 52, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcgkx"]
+atlas = ExtResource("1_2mfs4")
+region = Rect2(156, 0, 52, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6gur"]
+atlas = ExtResource("1_2mfs4")
+region = Rect2(208, 0, 52, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_an0hl"]
+atlas = ExtResource("1_2mfs4")
+region = Rect2(260, 0, 52, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_quw5m"]
+atlas = ExtResource("1_2mfs4")
+region = Rect2(312, 0, 52, 54)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsfk6"]
+atlas = ExtResource("1_2mfs4")
+region = Rect2(364, 0, 52, 54)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h8871"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3iae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3eejk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flw6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcgkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6gur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_an0hl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_quw5m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsfk6")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_twy2r"]
+radius = 25.02
+
+[node name="enemy" type="Node2D"]
+script = ExtResource("1_5jmnx")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h8871")
+animation = &"idle"
+frame_progress = 0.515019
+flip_h = true
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
+rotation = -3.14159
+shape = SubResource("CircleShape2D_twy2r")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(-200, 0)
+collision_mask = 12
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-30, 0)
+
+[connection signal="body_entered" from="AnimatedSprite2D/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

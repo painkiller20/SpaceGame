@@ -1,0 +1,126 @@
+[gd_scene load_steps=14 format=3 uid="uid://c8gan2sdkkryu"]
+
+[ext_resource type="Script" path="res://game_environment-gameworld.gd" id="1_a2eis"]
+[ext_resource type="Texture2D" uid="uid://b0s3fc7sjnlof" path="res://solar_system/space_background.png" id="1_hwbph"]
+[ext_resource type="FontFile" path="res://gui/fonts/hack_regular_16_dynamic_font.tres" id="1_rxm1v"]
+[ext_resource type="Texture2D" uid="uid://kiq7i0wiiwyg" path="res://gui/select_rect.png" id="2_laxtm"]
+[ext_resource type="Texture2D" uid="uid://31ebse57lvhs" path="res://gui/crosshair.png" id="3_ine5h"]
+[ext_resource type="PackedScene" uid="uid://b51pcrdjo3e2c" path="res://waypoints/waypoint_hud.tscn" id="4_nfu5g"]
+[ext_resource type="AudioStream" uid="uid://bpacs3ufj22ps" path="res://sounds/ui_planet_hover.wav" id="5_50wqm"]
+[ext_resource type="PackedScene" uid="uid://uwyfvnqplw5j" path="res://gui/mouse_capture.tscn" id="6_56vrt"]
+[ext_resource type="Script" path="res://Ambient sound.gd" id="8_ap1h2"]
+[ext_resource type="AudioStream" uid="uid://pdsd7xlt73p1" path="res://sounds/deep_space.ogg" id="9_hx6uo"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_yaou3"]
+panorama = ExtResource("1_hwbph")
+
+[sub_resource type="Sky" id="Sky_23tjy"]
+sky_material = SubResource("PanoramaSkyMaterial_yaou3")
+
+[sub_resource type="Environment" id="Environment_y680j"]
+background_mode = 2
+sky = SubResource("Sky_23tjy")
+
+[node name="game world" type="Node"]
+script = ExtResource("1_a2eis")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_y680j")
+
+[node name="SpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8000, 0, 0)
+
+[node name="HUD" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TargetPlanet" type="Label" parent="HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_fonts/font = ExtResource("1_rxm1v")
+text = "Hey Buddy"
+
+[node name="TargetPlanetRect" type="NinePatchRect" parent="HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_laxtm")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="CenterContainer" type="CenterContainer" parent="HUD"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="HUD/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("3_ine5h")
+
+[node name="WaypointHUD" parent="HUD" instance=ExtResource("4_nfu5g")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="HUD"]
+stream = ExtResource("5_50wqm")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="LoadingScreen" type="ColorRect" parent="."]
+layout_direction = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.145098, 0.145098, 0.145098, 1)
+
+[node name="CC" type="CenterContainer" parent="LoadingScreen"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="PanelContainer" type="PanelContainer" parent="LoadingScreen/CC"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoadingScreen/CC/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="LoadingScreen/CC/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Loading......."
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="LoadingScreen/CC/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="voxelengine" type="Node" parent="."]
+
+[node name="Ambient sound" type="Node" parent="."]
+script = ExtResource("8_ap1h2")
+
+[node name="DeepSpace" type="AudioStreamPlayer2D" parent="Ambient sound"]
+stream = ExtResource("9_hx6uo")
+
+[node name="PlanetDay" type="AudioStreamPlayer2D" parent="Ambient sound"]
+
+[node name="PlanetNight" type="AudioStreamPlayer2D" parent="Ambient sound"]
+
+[node name="MouseCapture" parent="." instance=ExtResource("6_56vrt")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
